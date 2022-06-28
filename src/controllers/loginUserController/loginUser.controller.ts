@@ -1,17 +1,18 @@
-import { ResponseApi } from './../models/responseHttp.model';
+import { UserRequest } from '../../models/loginRequest.model';
+import { ResponseApi } from '../../models/responseHttp.model';
 import { Request, Response } from "express";
-import { User } from "../models/User.model";
+import { User } from "../../models/User.model";
 
-export class LoginUserController{
-
+export class LoginUserController {
     public static loginUserController = async (req: Request, res: Response) => {
         try{
             res.send({
                 code: 200,
                 message: 'Usuário logado com sucesso!',
                 operation: true
-            } as ResponseApi<null>)
+            } as ResponseApi<null>);
         } catch(ex){
+            console.log(ex)
             res.send({
                 code: 400,
                 message: ex,
@@ -19,5 +20,4 @@ export class LoginUserController{
             } as ResponseApi<null>)
         }
     }
-
 }
