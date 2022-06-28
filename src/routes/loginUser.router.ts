@@ -6,7 +6,7 @@ const router = Router();
 
 router.post(
     '/loginUser', 
-    LoginUserMiddleware.validatedUser, 
+    LoginUserMiddleware.validateBody, 
     LoginUserController.loginUserController
 );
 
