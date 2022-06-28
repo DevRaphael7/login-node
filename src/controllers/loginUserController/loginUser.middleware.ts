@@ -1,5 +1,5 @@
 import { Response, Request, NextFunction } from 'express'
-import { UserRequest } from '../../models/loginRequest.model';
+import { UserRequest } from '../../models/userRequest.model';
 import { ResponseApi } from '../../models/responseHttp.model';
 
 export class LoginUserMiddleware {
@@ -16,13 +16,11 @@ export class LoginUserMiddleware {
             const data: UserRequest = req.body;
             if(!(data.name || data.email)){
                 response["message"] = "Usuário não informado!"
-                response["code"] = 400;
-                res.status(response.code).send(response)
+                res.status(response.code).json(response)
                 return
             } else if(!data.password) {
                 response["message"] = "Senha não informada"
-                response["code"] = 400;
-                res.status(response.code).send(response)
+                res.status(response.code).json(response)
                 return
             }
             next()
@@ -30,7 +28,7 @@ export class LoginUserMiddleware {
             console.log(ex)
             response["code"] = 500;
             response["message"] = ex as string;
-            res.status(response.code).send(response)
+            res.status(response.code).json(response)
         }   
 
     }

@@ -1,5 +1,5 @@
-import { UserRequest } from '../../models/loginRequest.model';
-import { ImpLoginRepository } from './impLoginRepository.interface';
+import { UserRequest } from '../../models/userRequest.model';
+import { ImpLoginRepository } from './loginRepository.interface';
 import { users } from '../../data/users.data';
 
 export class LoginUserRepository implements ImpLoginRepository{

@@ -1,4 +1,4 @@
-import { UserRequest } from "../models/loginRequest.model";
+import { UserRequest } from "../models/userRequest.model";
 
 export const users: UserRequest[] = [
     {
