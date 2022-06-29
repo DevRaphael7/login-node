@@ -14,14 +14,15 @@ export class LoginUserMiddleware {
 
         try{
             const data: UserRequest = req.body;
+
             if(!(data.name || data.email)){
                 response["message"] = "Usuário não informado!"
                 res.status(response.code).json(response)
-                return
+                return;
             } else if(!data.password) {
                 response["message"] = "Senha não informada"
                 res.status(response.code).json(response)
-                return
+                return;
             }
             next()
         } catch(ex) {
@@ -29,7 +30,6 @@ export class LoginUserMiddleware {
             response["code"] = 500;
             response["message"] = ex as string;
             res.status(response.code).json(response)
-        }   
-
+        }
     }
 }
