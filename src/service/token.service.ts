@@ -9,10 +9,8 @@ export class TokenService {
 
     constructor(private token: string | undefined = undefined) { }
 
-    public genarateToken = (user: UserRequest): string => {
+    public genarateToken = (): string => {
         return jwt.sign({
-            name: user.name,
-            senha: user.password,
             exp: Math.floor(Date.now() / 1000) + (60 * 60)
         }, this.tokenSecretKey)
     }

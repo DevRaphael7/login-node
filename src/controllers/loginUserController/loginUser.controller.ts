@@ -3,10 +3,7 @@ import { Request, Response } from "express";
 import { LoginUserRepository } from '../../repository/loginUserRepository/loginUser.repository';
 import { UserRequest } from '../../models/userRequest.model';
 import { TokenService } from '../../service/token.service';
-
-export interface GetToken {
-    token: string;
-}
+import { GetToken } from '../../models/getToken.model';
 
 export class LoginUserController {
 
@@ -29,12 +26,11 @@ export class LoginUserController {
             if(repository.getUser(bodyRequest)) {
                 respostaBackEnd["code"] = 200;
                 respostaBackEnd["operation"] = true
-                respostaBackEnd["data"] = { token: tokenService.genarateToken(bodyRequest) }
+                respostaBackEnd["data"] = { token: tokenService.genarateToken() }
                 respostaBackEnd["message"] = "Usuário logado com sucesso!"
                 res.status(200).json(respostaBackEnd);
                 return;
             }
-
             respostaBackEnd["message"] = "Usuário inválido ou não cadastrado";
             res.status(400).json(respostaBackEnd)
         } catch(ex){
