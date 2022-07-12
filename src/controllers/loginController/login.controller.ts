@@ -1,7 +1,6 @@
-import { NextFunction, Request, Response } from "express";
+import { Request, Response } from "express";
 import { GetToken } from "../../models/getToken.model";
 import { TokenService } from "../../service/token.service";
-import jwt from 'jsonwebtoken';
 
 export class LoginController {
 
@@ -12,8 +11,7 @@ export class LoginController {
         this.tokenService = new TokenService();
     }
 
-    public loginController = (req: Request, res: Response, next: NextFunction) => {
-        const decoded = jwt.decode(this.tokenService.genarateToken()) as any
+    public loginController = (req: Request, res: Response) => {
         let currentDate = `${this.date.toLocaleDateString()} - ${this.date.toLocaleTimeString()}`
         let expireTokenDate = `${this.date.toLocaleDateString()} - ${this.expireDate()}`
         res.send({
