@@ -1,6 +1,6 @@
 import { RegisterUserRepository } from './../../repository/registerUserRepository/registerUser.repository';
 import { UserRequest } from './../../models/userRequest.model';
-import { Request, Response, NextFunction } from 'express';
+import { Request, Response } from 'express';
 import { ResponseApi } from '../../models/responseHttp.model';
 
 export class RegisterUserController {

@@ -25,7 +25,7 @@ export class LoginUserController {
 
             if(repository.getUser(bodyRequest)) {
                 respostaBackEnd["code"] = 200;
-                respostaBackEnd["operation"] = true
+                respostaBackEnd["operation"] = true;
                 respostaBackEnd["data"] = { token: tokenService.genarateToken() }
                 respostaBackEnd["message"] = "Usuário logado com sucesso!"
                 res.status(200).json(respostaBackEnd);

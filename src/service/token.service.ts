@@ -17,8 +17,13 @@ export class TokenService {
 
     public validatToken = (): boolean => {
         if(!this.token) return false;
+
+        const tokenWithoutBearer = this.token.split("Bearer ");
+
+        if(tokenWithoutBearer.length == 1) return false;
+        console.log(tokenWithoutBearer[1])
         let checkTokenValid = true;
-        jwt.verify(this.token, this.tokenSecretKey, (error) => {
+        jwt.verify(tokenWithoutBearer[1], this.tokenSecretKey, (error) => {
             if(error) checkTokenValid = false;
         })
         return checkTokenValid;
