@@ -4,7 +4,7 @@ import { TokenService } from "../../service/token.service";
 
 export class LoginController {
 
-    private date = new Date()
+    private date = new Date();
     private tokenService: TokenService;
 
     constructor() {

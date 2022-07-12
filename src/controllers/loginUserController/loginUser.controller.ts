@@ -10,10 +10,7 @@ export class LoginUserController {
     constructor() {}
     
     public static loginUserController = async (req: Request, res: Response) => {
-
-        const tokenService = new TokenService();
-
-        const respostaBackEnd: ResponseApi<GetToken> = {
+        const respostaBackEnd: ResponseApi<null> = {
             code: 400,
             message: "",
             operation: false
@@ -26,7 +23,6 @@ export class LoginUserController {
             if(repository.getUser(bodyRequest)) {
                 respostaBackEnd["code"] = 200;
                 respostaBackEnd["operation"] = true;
-                respostaBackEnd["data"] = { token: tokenService.genarateToken() }
                 respostaBackEnd["message"] = "Usuário logado com sucesso!"
                 res.status(200).json(respostaBackEnd);
                 return;
