@@ -14,6 +14,7 @@ export class RegisterUserMiddleware {
 
         try {
             const user: UserRequest = req.body;
+            
             if(!user.name) {
                 response["message"] = "Usuário não informado"
                 res.status(400).json(response)
