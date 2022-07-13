@@ -4,7 +4,7 @@ import { users } from '../../data/users.data';
 
 export class LoginUserRepository implements ImpLoginRepository{
 
-    constructor() {}
+    constructor() { }
 
     getUser(user: UserRequest): boolean {
         const checkFoundUser = users.filter(value => 
