@@ -9,7 +9,6 @@ export class LoginController {
 
     constructor() {
         this.tokenService = new TokenService();
-        //Teste heroku
     }
 
     public loginController = (req: Request, res: Response) => {

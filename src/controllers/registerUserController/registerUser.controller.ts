@@ -12,7 +12,6 @@ export class RegisterUserController {
     }
 
     public registerNewUser = async(req: Request, res: Response) => {
-
         const body: UserRequest = req.body;
         
         await this.repository.addUser(body)

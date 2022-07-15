@@ -6,7 +6,7 @@ import { TokenService } from "../../service/token.service";
 export class TokenMiddleware {
 
     private static respostaBackEnd: ResponseApi<null> = {
-        code: 400,
+        code: 401,
         message: "Não autorizado",
         operation: false
     }
@@ -18,8 +18,8 @@ export class TokenMiddleware {
             const tokenService = new TokenService(bearerToken);
 
             if(!tokenService.validatToken()){
-                res.status(400).json(TokenMiddleware.respostaBackEnd);
-                return
+                res.status(401).json(TokenMiddleware.respostaBackEnd);
+                return;
             }
 
             next();

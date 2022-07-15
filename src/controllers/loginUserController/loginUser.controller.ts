@@ -2,8 +2,6 @@ import { ResponseApi } from '../../models/responseHttp.model';
 import { Request, Response } from "express";
 import { LoginUserRepository } from '../../repository/loginUserRepository/loginUser.repository';
 import { UserRequest } from '../../models/userRequest.model';
-import { TokenService } from '../../service/token.service';
-import { GetToken } from '../../models/getToken.model';
 
 export class LoginUserController {
 
@@ -28,7 +26,7 @@ export class LoginUserController {
                 return;
             }
             respostaBackEnd["message"] = "Usuário inválido ou não cadastrado";
-            res.status(400).json(respostaBackEnd)
+            res.status(401).json(respostaBackEnd)
         } catch(ex){
             console.log(ex)
             respostaBackEnd["message"] = ex as string;
