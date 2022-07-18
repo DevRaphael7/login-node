@@ -26,7 +26,7 @@ export class LoginUserController {
                 return;
             }
             respostaBackEnd["message"] = "Usuário inválido ou não cadastrado";
-            res.status(401).json(respostaBackEnd)
+            res.status(400).json(respostaBackEnd)
         } catch(ex){
             console.log(ex)
             respostaBackEnd["message"] = ex as string;

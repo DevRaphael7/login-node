@@ -17,6 +17,7 @@ export class TokenMiddleware {
 
             const tokenService = new TokenService(bearerToken);
 
+            console.log(!tokenService.validatToken())
             if(!tokenService.validatToken()){
                 res.status(401).json(TokenMiddleware.respostaBackEnd);
                 return;

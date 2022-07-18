@@ -10,6 +10,8 @@ app.use(cors())
 import loginUser from './routes/loginUser.router';
 import register from './routes/registerUser.router';
 import login from './routes/login.router';
+import gamers from './routes/gamers.router';
+
 const { PORT } = process.env;
 
 app.use(express.urlencoded({ extended: false }));
@@ -22,6 +24,7 @@ app.use('/api', cors({
 
 app.use("/api", register)
 app.use('/api', login)
+app.use('/api', gamers)
 
 app.use("/", (req: Request, res: Response) => {
     res.sendFile(path.join(__dirname, "./404/index.html"))

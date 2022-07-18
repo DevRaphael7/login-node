@@ -21,11 +21,14 @@ export class TokenService {
         const tokenWithoutBearer = this.token.split("Bearer ");
 
         if(tokenWithoutBearer.length == 1) return false;
-        console.log('Bearer: ' + tokenWithoutBearer[1])
         let checkTokenValid = true;
         jwt.verify(tokenWithoutBearer[1], this.tokenSecretKey, (error) => {
-            if(error) checkTokenValid = false;
+            if(error) {
+                checkTokenValid = false;
+                console.log(error)
+            }
         })
+        console.log(checkTokenValid)
         return checkTokenValid;
     }
 }

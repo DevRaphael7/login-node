@@ -11,7 +11,7 @@ export class LoginUserMiddleware {
             code: 400,
             operation: false
         }
-
+        
         try{
             const data: UserRequest = req.body;
 
