@@ -14,7 +14,7 @@ export class RegisterUserController {
     public registerNewUser = async(req: Request, res: Response) => {
         const body: UserRequest = req.body;
         
-        await this.repository.addUser(body)
+        const checkRegisterSucess = await this.repository.addUser(body)
 
         const respostaBackEnd: ResponseApi<null> = {
             code: 200,
@@ -22,6 +22,13 @@ export class RegisterUserController {
             operation: true
         }
 
-        res.status(200).json(respostaBackEnd)
+        if(checkRegisterSucess) {
+            res.status(200).json(respostaBackEnd)
+        } else {
+            respostaBackEnd.code = 500;
+            respostaBackEnd.message = "Falha em salvar usuário";
+            respostaBackEnd.operation = false;
+            res.status(500).json(respostaBackEnd);
+        }
     }
 }
