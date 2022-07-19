@@ -1,18 +1,32 @@
 import { UserRequest } from '../../models/userRequest.model';
 import { ImpLoginRepository } from './loginRepository.interface';
-import { users } from '../../data/users.data';
+import fs from 'fs';
 
 export class LoginUserRepository implements ImpLoginRepository{
 
     constructor() { }
 
-    getUser(user: UserRequest): boolean {
-        const checkFoundUser = users.filter(value => 
-            (user.name == value.name || user.email == value.email) 
-            && user.password == value.password
-        )
+    async getUser(user: UserRequest): Promise<boolean> {
+        return new Promise((resolver) => {
+            let checkFound = false
+            fs.readFile('C:/Users/raphael2000840/Documents/node/loginApi/src/data/users.data.json', 'utf8', async (error, data) => {
+                if(error){
+                    console.log(error);
+                    resolver(false)
+                    return;
+                }
 
-        if(checkFoundUser.length > 0) return true;
-        return false;
+                const allUsers = JSON.parse(data) as UserRequest[];
+    
+                allUsers.map((value: UserRequest) => {
+                    if(value.name == user.name && value.password == user.password){
+                        console.log('Usuário encontrado!')
+                        checkFound = true;
+                    }
+                })
+
+                resolver(checkFound)
+            });
+        })
     }
 }

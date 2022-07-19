@@ -18,7 +18,7 @@ export class LoginUserController {
             const repository: LoginUserRepository = new LoginUserRepository();
             const bodyRequest: UserRequest = req.body;
 
-            if(repository.getUser(bodyRequest)) {
+            if(await repository.getUser(bodyRequest)) {
                 respostaBackEnd["code"] = 200;
                 respostaBackEnd["operation"] = true;
                 respostaBackEnd["message"] = "Usuário logado com sucesso!"
