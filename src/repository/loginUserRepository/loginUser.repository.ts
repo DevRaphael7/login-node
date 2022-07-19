@@ -1,7 +1,7 @@
-import { users } from './../../data/users.data';
 import { UserRequest } from '../../models/userRequest.model';
 import { ImpLoginRepository } from './loginRepository.interface';
 import fs from 'fs';
+import path from 'path';
 
 export class LoginUserRepository implements ImpLoginRepository {
 
@@ -25,7 +25,7 @@ export class LoginUserRepository implements ImpLoginRepository {
 
     public getUserByFileSystem(): Promise<boolean> {
         return new Promise((resolver) => {
-            fs.readFile('C:/Users/raphael2000840/Documents/node/loginApi/src/data/users.data.json', 'utf8', (error, data) => {
+            fs.readFile(path.join('src/data/users.data.json'), 'utf8', (error, data) => {
                 if(error){
                     console.log(error);
                     resolver(false)

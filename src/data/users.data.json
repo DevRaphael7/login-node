@@ -1,14 +1,1 @@
-[
-    {
-        "email":"Raphael@email.com",
-        "password":"123",
-        "name":"DevRaphael7",
-        "age":"18"
-    },
-    {
-        "name":"Raphael",
-        "password":"123",
-        "email":"Raphael@email.com",
-        "age":"10"
-    }
-]
+[{"email":"Raphael@email.com","password":"123","name":"DevRaphael7","age":"18"},{"name":"Raphael","password":"123","email":"Raphael@email.com","age":"10"},{"name":"Raphael","password":"123","email":"Raphael@email.com","age":"10"}]

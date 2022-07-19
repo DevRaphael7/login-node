@@ -17,14 +17,14 @@ export class RegisterUserRepository implements ImpRegisterUserRepository {
 
         const users = this.loginRepository.getUsersJson();
         users.push(user);
-        
+
         return this.saveUserInFileSystem(users);
     }
 
     private saveUserInFileSystem(users: UserRequest[]): boolean {
         try{
             fs.writeFileSync(
-                'C:/Users/raphael2000840/Documents/node/loginApi/src/data/users.data.json', 
+                path.join('src/data/users.data.json'), 
                 JSON.stringify(users)
             )
             return true;
