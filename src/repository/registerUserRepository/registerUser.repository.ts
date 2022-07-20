@@ -16,6 +16,7 @@ export class RegisterUserRepository implements ImpRegisterUserRepository {
         if(!await this.loginRepository.getUserByFileSystem()) return false;
 
         const users = this.loginRepository.getUsersJson();
+        console.log('Usuários: ' + users)
         users.push(user);
 
         return this.saveUserInFileSystem(users);
@@ -25,7 +26,7 @@ export class RegisterUserRepository implements ImpRegisterUserRepository {
         try{
             fs.writeFileSync(
                 path.join('src/data/users.data.json'), 
-                JSON.stringify(users)
+                JSON.stringify(users, null, '\t')
             )
             return true;
         } catch(ex) {

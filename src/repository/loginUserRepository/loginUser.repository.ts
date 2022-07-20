@@ -25,17 +25,25 @@ export class LoginUserRepository implements ImpLoginRepository {
 
     public getUserByFileSystem(): Promise<boolean> {
         return new Promise((resolver) => {
-            fs.readFile(path.join('src/data/users.data.json'), 'utf8', (error, data) => {
-                if(error){
-                    console.log(error);
-                    resolver(false)
-                    return;
-                }
+            try{
+                fs.readFile(path.join('src/data/users.data.json'), 'utf8', (error, data) => {
+                    if(error){
+                        console.log(error);
+                        resolver(false)
+                        return;
+                    }
 
-                const allUsers = JSON.parse(data) as UserRequest[];
-                this.usersJson = allUsers;
-                resolver(true);
-            });
+                    if(data.length == 0) data = "[ ]";
+                    
+                    const allUsers = JSON.parse(data) as UserRequest[];
+                    console.log('Todos os usuários: ' + allUsers)
+                    this.usersJson = allUsers;
+                    resolver(true);
+                });
+            } catch(ex) {
+                console.log(ex)
+                resolver(false)
+            }
         })
     }
 
